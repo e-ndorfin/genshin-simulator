@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+
+		<script>
+			var PERCENT = 0.5;
+			function pull() {
+				const random_nums = Array(10).fill(Math.random());
+				var vid = document.getElementById("four-star");
+
+				setTimeout(function () {
+					//changes page after video plays (7 seconds)
+					vid.style.display = "none";
+					window.location.href = "/prize.html";
+				}, 7000);
+
+				for (var i = 0; i < random_nums.length; i++) {
+					if (random_nums[i] <= 0.01) {
+						var vid = document.getElementById("five-star");
+					}
+				}
+
+				vid.style.display = "block";
+				vid.play();
+			}
+		</script>
+	</head>
+	<body onload="pull();">
+		<video src="4star.mp4" width="100%" id="four-star"></video>
+		<video src="5star.mp4" width="100%" id="five-star"></video>
+	</body>
+</html>
