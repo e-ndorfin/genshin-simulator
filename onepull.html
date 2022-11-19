@@ -5,31 +5,51 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Signika" />
 
 		<script>
 			var PERCENT = 0.5;
+			var vid = document.getElementById("three-star");
 			function pull() {
 				var random_num = Math.random();
+				var container = document.getElementById("prize-container");
+
 				setTimeout(function () {
 					vid.style.display = "none";
-					window.location.href = "/prize.html";
+					container.style.display = "flex";
+					// window.location.href = "/prize.html";
 				}, 7000);
 
-				if (random_num <= 0.01) {
+				if (random_num <= 0.025) {
 					var vid = document.getElementById("five-star");
-				} else if (random_num >= 0.02 && random_num <= 0.1) {
+					var text = document.getElementById("five-star-text");
+				} else if (random_num > 0.025 && random_num <= 0.175) {
 					var vid = document.getElementById("four-star");
+					var text = document.getElementById("four-star-text");
 				} else {
 					var vid = document.getElementById("three-star");
+					var text = document.getElementById("three-star-text");
 				}
+
 				vid.style.display = "block";
+				text.style.display = "block";
 				vid.play();
 			}
 		</script>
 	</head>
 	<body onload="pull();">
-		<video src="3star.mp4" width="100%" id="three-star"></video>
-		<video src="4star.mp4" width="100%" id="four-star"></video>
-		<video src="5star.mp4" width="100%" id="five-star"></video>
+		<video src="3star1.mp4" width="100%" id="three-star" muted="true"></video>
+		<video src="4star1.mp4" width="100%" id="four-star" muted="true"></video>
+		<video src="5star1.mp4" width="100%" id="five-star" muted="true"></video>
+
+		<div id="prize-container" style="justify-content: center; align-items: center">
+			<h1 id="three-star-text" class="prize-text" style="font-family: Signika">3★</h1>
+			<h1 id="four-star-text" class="prize-text" style="font-family: Signika">4★</h1>
+			<h1 id="five-star-text" class="prize-text" style="font-family: Signika">5★</h1>
+
+			<a href="index.html"
+				><img src="img/close2.png" width="60px" style="position: absolute; top: 20px; right: 30px"
+			/></a>
+		</div>
 	</body>
 </html>

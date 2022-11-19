@@ -5,21 +5,55 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Signika" />
 
 		<script>
 			var PERCENT = 0.5;
 			function pull() {
-				const random_nums = Array(10).fill(Math.random());
+				const random_nums = Array(10)
+					.fill()
+					.map(() => Math.random());
 				var vid = document.getElementById("four-star");
+				var container = document.getElementById("prize-container");
 
 				setTimeout(function () {
 					//changes page after video plays (7 seconds)
 					vid.style.display = "none";
-					window.location.href = "/prize.html";
+					container.style.display = "flex";
+
+					var flexbox = document.getElementById("tenpull-prize-container");
+
+					var four_star_counter = 0;
+
+					for (var i = 0; i < random_nums.length; i++) {
+						var tag = document.createElement("h1");
+						console.log(random_nums);
+						if (random_nums[i] <= 0.025) {
+							var text = document.createTextNode("5★");
+							var classStr = "five-star-container";
+						} else if (random_nums[i] > 0.025 && random_nums[i] <= 0.175) {
+							var text = document.createTextNode("4★");
+							var classStr = "four-star-container";
+							four_star_counter += 1;
+						} else {
+							var text = document.createTextNode("3★");
+							var classStr = "three-star-container";
+						}
+
+						if (i == 9 && four_star_counter == 0) {
+							var text = document.createTextNode("4★");
+							var classStr = "four-star-container";
+						}
+
+						console.log(i, text);
+						tag.appendChild(text);
+						tag.setAttribute("id", classStr);
+						flexbox.appendChild(tag);
+					}
 				}, 7000);
 
 				for (var i = 0; i < random_nums.length; i++) {
-					if (random_nums[i] <= 0.01) {
+					if (random_nums[i] <= 0.025) {
 						var vid = document.getElementById("five-star");
 					}
 				}
@@ -30,7 +64,15 @@
 		</script>
 	</head>
 	<body onload="pull();">
-		<video src="4star.mp4" width="100%" id="four-star"></video>
-		<video src="5star.mp4" width="100%" id="five-star"></video>
+		<video src="4star10.mp4" width="100%" muted="true" id="four-star"></video>
+		<video src="5star10.mp4" width="100%" muted="true" id="five-star"></video>
+
+		<div id="prize-container" style="justify-content: center; align-items: center">
+			<div id="tenpull-prize-container"></div>
+
+			<a href="index.html"
+				><img src="img/close2.png" width="60px" style="position: absolute; top: 20px; right: 30px"
+			/></a>
+		</div>
 	</body>
 </html>
